@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1eke0s2" targetNamespace="http://bpmn.io/schema/bpmn" exporter="bpmn-js (https://demo.bpmn.io)" exporterVersion="16.4.0">
+  <bpmn:process id="Process_05cvk22" isExecutable="false">
+    <bpmn:startEvent id="StartEvent_1hn3tcd" name="new SAP version&#10;released">
+      <bpmn:outgoing>Flow_1m4oewe</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="Activity_06o6avr" name="DENO&#10;create mastodon status">
+      <bpmn:incoming>Flow_0g4vojb</bpmn:incoming>
+      <bpmn:outgoing>Flow_19vj58g</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_19vj58g" sourceRef="Activity_06o6avr" targetRef="Activity_09nyyiv" />
+    <bpmn:sendTask id="Activity_09nyyiv" name="Mastodon&#10;display version notification">
+      <bpmn:incoming>Flow_19vj58g</bpmn:incoming>
+    </bpmn:sendTask>
+    <bpmn:sequenceFlow id="Flow_0g4vojb" sourceRef="Activity_0h5txcq" targetRef="Activity_06o6avr" />
+    <bpmn:sequenceFlow id="Flow_1m4oewe" sourceRef="StartEvent_1hn3tcd" targetRef="Activity_0h5txcq" />
+    <bpmn:serviceTask id="Activity_0h5txcq" name="newreleases&#10;send webhook&#10;notification">
+      <bpmn:incoming>Flow_1m4oewe</bpmn:incoming>
+      <bpmn:outgoing>Flow_0g4vojb</bpmn:outgoing>
+    </bpmn:serviceTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_05cvk22">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1hn3tcd">
+        <dc:Bounds x="156" y="82" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="131" y="125" width="86" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0iozih3_di" bpmnElement="Activity_06o6avr">
+        <dc:Bounds x="390" y="60" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0legx0t_di" bpmnElement="Activity_09nyyiv">
+        <dc:Bounds x="540" y="60" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1pqan2q_di" bpmnElement="Activity_0h5txcq">
+        <dc:Bounds x="250" y="60" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_19vj58g_di" bpmnElement="Flow_19vj58g">
+        <di:waypoint x="490" y="100" />
+        <di:waypoint x="540" y="100" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0g4vojb_di" bpmnElement="Flow_0g4vojb">
+        <di:waypoint x="350" y="100" />
+        <di:waypoint x="390" y="100" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1m4oewe_di" bpmnElement="Flow_1m4oewe">
+        <di:waypoint x="192" y="100" />
+        <di:waypoint x="250" y="100" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

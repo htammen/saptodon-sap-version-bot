@@ -14,6 +14,10 @@ In our case this means that this program that is deployed on the internet gets i
 saptodon SAP version bot analyses the information, creates a mastodon status (toot) text 
 and toots it to mastodon via the user @sap_versions@saptodon.org. 
 
+Here's a graphic that visualizes the process
+
+![./docs/sapversionbot.svg](./docs/sapversionbot.svg)
+
 ## Technical infos
 I don't tell too much about technical details here cause this service runs on the internet. 
 Even though the technical infrastructure is very secure I don't want the bad folks directly
