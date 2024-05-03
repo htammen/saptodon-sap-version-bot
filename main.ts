@@ -5,7 +5,9 @@ import { createRestAPIClient } from "https://cdn.skypack.dev/masto";
   * create the mastodon status message from newreleases.io json input 
   */
 function parseRequest(json: object): string {
-  return `There is a new version of\n${json.project}\non ${json.provider}\nversion: ${json.version}`
+  let url = ""
+  if (json.provider === "github") { url = `https://github.com/${json.project}`}
+  return `There is a new version of\n${json.project}\non ${json.provider}\nversion: ${json.version}${url?`\n${url}`:``}`
 }
 
 /**
