@@ -16,24 +16,34 @@ function parseRequest(json: object): string {
  * handles the incoming request fron newreleases.io 
  */
 async function handler(_req) {
-  const inputJSON = await _req.json();
-  const resp = parseRequest(inputJSON);
+  try {
+    const inputJSON = await _req.json();
+    console.log(inputJSON)
+    const resp = parseRequest(inputJSON);
 
-  // URL and TOKEN are retrieved from environment variable
-  // URL = https://saptodon.org
-  // TOKEN = secret token of saptodon user who wants to toot status
-  const masto = createRestAPIClient({
-    url: Deno.env.get("URL"),
-    accessToken: Deno.env.get("TOKEN"),
-  });
+    // URL and TOKEN are retrieved from environment variable
+    // URL = https://saptodon.org
+    // TOKEN = secret token of saptodon user who wants to toot status
+    const masto = createRestAPIClient({
+      url: Deno.env.get("URL"),
+      accessToken: Deno.env.get("TOKEN"),
+    });
 
-  // create the mastodon status (toot)
-  const status = await masto.v1.statuses.create({
-    status: resp,
-    visibility: "private",
-  });
+    // create the mastodon status (toot)
+    const status = await masto.v1.statuses.create({
+      status: resp,
+      visibility: "private",
+    });
 
-  // console.log(status.url);
+    // console.log(status.url);
+  } catch (e: unknown) {
+    if (typeof e === "string") {
+      console.log(e)
+    } else if (e instanceof Error) {
+      console.log(e.name)
+      console.log(e.message)
+    }
+  }
 
   // Return status 200 to newreleases.io.
   return new Response(null, {
