@@ -6,8 +6,9 @@ import { createRestAPIClient } from "https://cdn.skypack.dev/masto";
   */
 function parseRequest(json: object): string {
   let url = ""
-  if (json.provider === "github") { url = `https://github.com/${json.project}`}
-  return `There is a new version of\n${json.project}\non ${json.provider}\nversion: ${json.version}${url?`\n${url}`:``}`
+  if (json.provider === "github") { url = `https://github.com/${json.project}` }
+  if (json.provider === "npm") { url = `https://www.npmjs.com/package/${json.project}` }
+  return `There is a new version of\n${json.project}\non ${json.provider}\nversion: ${json.version}${url ? `\n${url}` : ``}`
 }
 
 /**
