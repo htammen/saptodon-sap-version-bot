@@ -32,7 +32,7 @@ async function handler(_req) {
     // create the mastodon status (toot)
     const status = await masto.v1.statuses.create({
       status: resp,
-      visibility: "private",
+      visibility: "public",
     });
 
     // console.log(status.url);
